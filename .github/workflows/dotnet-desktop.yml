@@ -16,7 +16,7 @@ jobs:
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '5.0.x'
+        dotnet-version: '8.0.x'
 
     - name: Build and Test
       run: dotnet build ProductCatalogService && dotnet test ProductCatalogService
