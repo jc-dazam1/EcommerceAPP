@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Users\\JUAN CAMILO\\Documents\\Personal\\TEST\\EcommercePlatformApp\\ProductCatalogService\\ProductCatalogService\\ProductCatalogService.csproj": {}
+    "D:\\Users\\JUAN CAMILO\\Documents\\Personal\\TEST\\EcommercePlatformApp\\ProductCatalogService\\ProductCatalogService.csproj": {}
   },
   "projects": {
-    "D:\\Users\\JUAN CAMILO\\Documents\\Personal\\TEST\\EcommercePlatformApp\\ProductCatalogService\\ProductCatalogService\\ProductCatalogService.csproj": {
+    "D:\\Users\\JUAN CAMILO\\Documents\\Personal\\TEST\\EcommercePlatformApp\\ProductCatalogService\\ProductCatalogService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Users\\JUAN CAMILO\\Documents\\Personal\\TEST\\EcommercePlatformApp\\ProductCatalogService\\ProductCatalogService\\ProductCatalogService.csproj",
+        "projectUniqueName": "D:\\Users\\JUAN CAMILO\\Documents\\Personal\\TEST\\EcommercePlatformApp\\ProductCatalogService\\ProductCatalogService.csproj",
         "projectName": "ProductCatalogService",
-        "projectPath": "D:\\Users\\JUAN CAMILO\\Documents\\Personal\\TEST\\EcommercePlatformApp\\ProductCatalogService\\ProductCatalogService\\ProductCatalogService.csproj",
+        "projectPath": "D:\\Users\\JUAN CAMILO\\Documents\\Personal\\TEST\\EcommercePlatformApp\\ProductCatalogService\\ProductCatalogService.csproj",
         "packagesPath": "C:\\Users\\JUAN CAMILO\\.nuget\\packages\\",
-        "outputPath": "D:\\Users\\JUAN CAMILO\\Documents\\Personal\\TEST\\EcommercePlatformApp\\ProductCatalogService\\ProductCatalogService\\obj\\",
+        "outputPath": "D:\\Users\\JUAN CAMILO\\Documents\\Personal\\TEST\\EcommercePlatformApp\\ProductCatalogService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\JUAN CAMILO\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,6 +43,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.4, )"
