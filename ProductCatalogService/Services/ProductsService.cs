@@ -1,30 +1,56 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
+using ProductCatalogService.Data;
 using ProductCatalogService.Models;
 
 namespace ProductCatalogService.Services
 {
     public class ProductsService
     {
-        private readonly List<Product> _products = new List<Product>
+        private readonly ProductCatalogContext _context;
+
+        public ProductsService(ProductCatalogContext context)
         {
-            new Product { Id = 1, Name = "Product 1", Price = 10.99, Amount = 20 },
-            new Product { Id = 2, Name = "Product 2", Price = 20.99, Amount = 20 },
-        };
+            _context = context;
+        }
 
         public IEnumerable<Product> GetAllProducts()
         {
-            return _products;
+            return _context.Products.ToList();
         }
 
         public Product GetProductById(int id)
         {
-            return _products.FirstOrDefault(p => p.Id == id);
+            return _context.Products.Find(id);
         }
 
         public void AddProduct(Product product)
         {
-            _products.Add(product);
+            _context.Products.Add(product);
+            _context.SaveChanges();
+        }
+
+        public void UpdateProduct(Product product)
+        {
+            _context.Entry(product).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+
+        public void DeleteProduct(int id)
+        {
+            var product = _context.Products.Find(id);
+            if (product != null)
+            {
+                _context.Products.Remove(product);
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new ArgumentException("Product not found");
+            }
         }
     }
 }
