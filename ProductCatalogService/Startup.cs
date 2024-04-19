@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ProductCatalogService.Data;
 using ProductCatalogService.Services;
+using Pomelo.EntityFrameworkCore.MySql;
 
 namespace ProductCatalogService
 {
@@ -16,11 +19,21 @@ namespace ProductCatalogService
             Configuration = configuration;
         }
 
-        public void ConfigureServices(IServiceCollection services)
+       public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ProductCatalogContext>(options =>
+                options.UseMySql(
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    new MySqlServerVersion(new Version(8, 3, 0)),
+                    mySqlOptions => mySqlOptions.EnableRetryOnFailure() // Ajusta la versión según la que estés utilizando
+                )
+            );
+
+            services.AddScoped<ProductCatalogContext>();
+
             services.AddControllers();
-            services.AddSingleton<ProductsService>();
         }
+
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
