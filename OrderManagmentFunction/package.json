@@ -1,0 +1,16 @@
+{
+    "name": "ordermanagmentfunction",
+    "version": "1.0.0",
+    "description": "Order Management Service for AWS Lambda",
+    "main": "index.js", 
+    "dependencies": {
+      "@aws-sdk/lib-dynamodb": "^3.556.0",
+      "aws-sdk": "^2.1603.0",
+      "aws-sdk-js-codemod": "^1.4.0"
+    },
+    "scripts": {
+      "start": "node index.js",
+      "initialize": "node -e 'require(\"./dynamodb\").createOrderTable()'"
+    }
+  }
+  
