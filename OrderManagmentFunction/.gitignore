@@ -1,0 +1,53 @@
+# Ignorar archivos de compilación
+bin/
+obj/
+node_modules/
+
+# Ignorar archivos y carpetas generados por Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*_i.c
+*_p.c
+*_i.h
+*.ilk
+*.log
+*.dll
+*.exe
+*.pdb
+*.log
+*.vspscc
+*.vssscc
+*.pidb
+*.svclog
+*.appx
+*.appxrecipe
+*.vc.db
+*.sqlite
+*.sqlite3
+*.sqlproj.user
+*.pfx
+*.p12
+*.bak
+*.cache
+*.csproj.user
+*.dbmdl
+*.jfm
+*.gpState
+
+# Ignorar archivos generados por Rider
+.idea/
+*.sln.iml
+
+# Ignorar archivos de caché y respaldo
+[Tt]humbs.db
+*.DS_Store
+*.bak
+*~
+
+# Ignorar carpetas de paquetes NuGet
+packages/
+*.nupkg
+!.nuget/
