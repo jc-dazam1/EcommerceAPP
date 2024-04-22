@@ -1,0 +1,20 @@
+service: order-management-service
+
+provider:
+  name: localstack
+  runtime: nodejs16.x
+  region: us-east-1
+
+functions:
+  orderHandler:
+    handler: orderHandler.handler
+    events:
+      - http:
+          path: /order
+          method: post
+          cors: true
+      - http:
+          path: /orders
+          method: get
+          cors: true
+
