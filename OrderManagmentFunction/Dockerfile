@@ -16,9 +16,6 @@ RUN npm install aws-sdk
 # Instala el cliente DynamoDB del SDK de AWS
 RUN npm install @aws-sdk/client-dynamodb
 
-# Expone el puerto en el que se ejecutará la función Lambda
-EXPOSE 3000
-
 # Define el comando de inicio para ejecutar la función Lambda
 CMD ["npm", "start"]
 
