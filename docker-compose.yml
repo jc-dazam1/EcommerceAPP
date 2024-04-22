@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  localstack:
+    image: localstack/localstack
+    container_name: localstack
+    ports:
+      - "4566-4599:4566-4599" # Puertos para servicios de AWS
+      - "3306:3306" # Puerto para MySQL
+      - "3000:3000" # Puerto para API Gateway
+      - "4567:4567" # Puerto para funciones Lambda
+      - "4568:4568" # Puerto para Step Functions
+      - "4574:4574" # Puerto para SQS
+      - "4576:4576" # Puerto para SNS
+    environment:
+      - SERVICES=s3,sqs,dynamodb,lambda,apigateway,elasticloadbalancing # Incluimos los servicios
+      - DEFAULT_REGION=us-east-1 # Región por defecto
+    networks:
+      - localstack_network
+
+  ordermanagmentfunction:
+      image: ordermanagmentfunction
+      container_name: ordermanagmentfunction
+      ports:
+        - "3001:3001"
+      depends_on:
+        - localstack
+      environment:
+        - AWS_ACCESS_KEY_ID=AKIA3VM6DAIG5KQ74Y6N
+        - AWS_SECRET_ACCESS_KEY=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
+        - AWS_DEFAULT_REGION=us-east-1
+        - AWS_ENDPOINT_URL=http://localstack:4566
+      networks:
+        - localstack_network
+
+  productcatalogservice:
+    image: productcatalogservice
+    container_name: productcatalogservice
+    ports:
+      - "8000:8080"
+    depends_on:
+      - localstack
+      - mysql_db
+    environment:
+      - AWS_ACCESS_KEY_ID=AKIA3VM6DAIG5KQ74Y6N
+      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_ENDPOINT_URL=http://localstack:4566
+      - ConnectionStrings__DefaultConnection=server=mysql_db;port=3306;database=productsCatalog;user=root;password=my-secret-pw;
+    command: 
+    networks:
+      - localstack_network
+
+  mysql_db:
+    image: mysql:latest
+    container_name: mysql_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+      - MYSQL_DATABASE=productsCatalog
+    ports:
+      - "3307:3306" # Puerto mapeado para acceder a MySQL fuera de Docker
+    networks:
+      - localstack_network
+
+networks:
+  localstack_network:
