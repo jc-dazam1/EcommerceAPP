@@ -25,7 +25,7 @@ namespace ProductCatalogService
                 options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection"),
                     new MySqlServerVersion(new Version(8, 3, 0)),
-                    mySqlOptions => mySqlOptions.EnableRetryOnFailure() // Ajusta la versión según la que estés utilizando
+                    mySqlOptions => mySqlOptions.EnableRetryOnFailure()
                 )
             );
 
