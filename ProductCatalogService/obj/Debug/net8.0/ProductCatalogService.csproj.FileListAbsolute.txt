@@ -155,3 +155,4 @@ D:\Users\JUAN CAMILO\Documents\Personal\TEST\EcommercePlatformApp\ProductCatalog
 D:\Users\JUAN CAMILO\Documents\Personal\TEST\EcommercePlatformApp\ProductCatalogService\obj\Debug\net8.0\ProductCatalogService.pdb
 D:\Users\JUAN CAMILO\Documents\Personal\TEST\EcommercePlatformApp\ProductCatalogService\obj\Debug\net8.0\ProductCatalogService.genruntimeconfig.cache
 D:\Users\JUAN CAMILO\Documents\Personal\TEST\EcommercePlatformApp\ProductCatalogService\obj\Debug\net8.0\ref\ProductCatalogService.dll
+D:\Users\JUAN CAMILO\Documents\Personal\TEST\EcommercePlatformApp\ProductCatalogService\bin\Debug\net8.0\dependencies.json

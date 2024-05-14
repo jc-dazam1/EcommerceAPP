@@ -25,9 +25,14 @@ namespace ProductCatalogService
                 options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection"),
                     new MySqlServerVersion(new Version(8, 3, 0)),
-                    mySqlOptions => mySqlOptions.EnableRetryOnFailure() // Ajusta la versión según la que estés utilizando
+                    mySqlOptions => mySqlOptions.EnableRetryOnFailure()
                 )
             );
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "ProductCatalogService", Version = "v1" });
+            });
 
             services.AddScoped<ProductCatalogContext>();
 
@@ -47,6 +52,12 @@ namespace ProductCatalogService
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProductCatalogService V1");
             });
         }
     }
