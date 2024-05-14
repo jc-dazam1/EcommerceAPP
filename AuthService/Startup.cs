@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using AuthService.Data;
+using AuthService.Services;
 
 namespace AuthService
 {
@@ -28,6 +29,7 @@ namespace AuthService
             });
 
             services.AddScoped<UsersContext>();
+            services.AddScoped<IAuthService, AuthService.Services.AuthService>();
 
             services.AddControllers();
         }
