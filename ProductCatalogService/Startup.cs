@@ -29,6 +29,11 @@ namespace ProductCatalogService
                 )
             );
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "ProductCatalogService", Version = "v1" });
+            });
+
             services.AddScoped<ProductCatalogContext>();
 
             services.AddControllers();
@@ -47,6 +52,12 @@ namespace ProductCatalogService
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProductCatalogService V1");
             });
         }
     }

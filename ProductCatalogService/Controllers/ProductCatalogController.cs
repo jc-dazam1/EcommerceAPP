@@ -37,13 +37,13 @@ namespace ProductCatalogService.Controllers
         {
             _context.Products.Add(product);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(Get), new { id = product.Id }, product);
+            return CreatedAtAction(nameof(Get), new { id = product.ProductId }, product);
         }
 
         [HttpPut("{id}")]
         public IActionResult Put(int id, Product product)
         {
-            if (id != product.Id)
+            if (id != product.ProductId)
             {
                 return BadRequest();
             }
