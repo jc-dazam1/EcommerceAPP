@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace AuthService.Services
@@ -27,7 +28,8 @@ namespace AuthService.Services
             // Verificar si el usuario ya existe
             if (_usersContext.Users.Any(u => u.Username == user.Username))
                 return false;
-
+            // Hashear la contraseña antes de guardarla en la base de datos
+            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
             // Agregar el usuario
             _usersContext.Users.Add(user);
             _usersContext.SaveChanges();
@@ -60,7 +62,9 @@ namespace AuthService.Services
         private string GenerateJwtToken(string username)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("clave_secreta_para_el_token");
+            
+            var keyGenerate = GenerateSecretKey(256);
+            var key = Encoding.ASCII.GetBytes(keyGenerate);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, username) }),
@@ -69,6 +73,20 @@ namespace AuthService.Services
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
+        }
+
+        public string GenerateSecretKey(int keySize)
+        {
+            // Crear una instancia de RNGCryptoServiceProvider para generar bytes aleatorios
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                // Generar una secuencia de bytes aleatorios
+                var bytes = new byte[keySize / 8];
+                rng.GetBytes(bytes);
+
+                // Convertir los bytes en una cadena base64
+                return Convert.ToBase64String(bytes);
+            }
         }
     }
 }
