@@ -1,5 +1,5 @@
 # Test
-## LINK TIC
+## Ecommerce
 
 ## Descripción
 
@@ -7,7 +7,7 @@ Se debe diseñar e implementar parcialmente una plataforma de comercio electrón
 
 ## DIAGRAMA COMPONENTES
 
-![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://i.ibb.co/L892w2Q/arqMixta.png)
+![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://i.ibb.co/rcBFj0X/arquitectura-mixta.png)
 
 ## INSTRUCCIONES
 
